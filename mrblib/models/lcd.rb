@@ -1,6 +1,6 @@
 class LCD
-  WIDTH  = 320
-  HEIGHT = 240
+  WIDTH  =  80
+  HEIGHT = 160
 
   def self.rgb(r, g, b)
     r = 0x1f  if 0x1f < r

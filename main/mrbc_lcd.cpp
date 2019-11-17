@@ -1,4 +1,4 @@
-#include <M5Stack.h>
+#include <M5StickC.h>
 
 #ifdef __cplusplus
 extern "C" {
