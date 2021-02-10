@@ -1,5 +1,5 @@
 class LCD
-  WIDTH  = 320
+  WIDTH  = 134  # 135
   HEIGHT = 240
 
   def self.rgb(r, g, b)
