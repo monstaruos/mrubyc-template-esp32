@@ -7,7 +7,10 @@
 
 #include "mrubyc.h"
 
+#include "mrbc_m5atom_matrix.h"
+
 #include "models/greeter.h"
+#include "models/led_matrix.h"
 #include "loops/master.h"
 
 #define MEMORY_SIZE (1024*40)
@@ -53,6 +56,9 @@ void app_main(void) {
   mrbc_init(memory_pool, MEMORY_SIZE);
 
   mrbc_define_method(0, mrbc_class_object, "debugprint", c_debugprint);
+
+  mrbc_mruby_m5atom_matrix_gem_init(0);
+  mrbc_create_task(led_matrix, 0);
 
   mrbc_create_task(greeter, 0);
   mrbc_create_task(master, 0);
