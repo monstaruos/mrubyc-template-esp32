@@ -6,6 +6,10 @@ extern "C" {
 
 #include "mrbc_lcd.h"
 
+
+static struct RClass* mrbc_class_m5core_lcd;
+
+
 #if 0
 // M5.lcd.setBrightness(uint8_t brightness);
 static mrbc_value
@@ -274,7 +278,7 @@ mrbc_mruby_lcd_m5stack_gem_init(struct VM *vm)
 {
   M5.begin();  // THIS IS TOO BAD.
 
-  mrbc_class_string = mrbc_define_class(vm, "LCD", mrbc_class_object);
+  mrbc_class_m5core_lcd = mrbc_define_class(vm, "LCD", mrbc_class_object);
 
 #if 0
   // M5.lcd.setBrightness(uint8_t brightness);
@@ -291,7 +295,7 @@ mrbc_mruby_lcd_m5stack_gem_init(struct VM *vm)
 #endif
 
   // M5.Lcd.fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
-  mrbc_define_method(vm, mrbc_class_string, "fill_rect", mrbc_lcd_fill_rect);
+  mrbc_define_method(vm, mrbc_class_m5core_lcd, "fill_rect", mrbc_lcd_fill_rect);
 
 #if 0
   // M5.Lcd.fillScreen(uint16_t color);
@@ -313,7 +317,7 @@ mrbc_mruby_lcd_m5stack_gem_init(struct VM *vm)
 #endif
 
   // M5.Lcd.fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color);
-  mrbc_define_method(vm, mrbc_class_string, "fill_triangle", mrbc_lcd_fill_triangle);
+  mrbc_define_method(vm, mrbc_class_m5core_lcd, "fill_triangle", mrbc_lcd_fill_triangle);
 
 #if 0
   // M5.Lcd.drawRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h, int16_t radius, uint16_t color);
