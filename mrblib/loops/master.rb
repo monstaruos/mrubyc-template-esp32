@@ -1,116 +1,43 @@
 greeter = Greeter.new
 
-FULL_WIDTH  = LCD::WIDTH
-FULL_HEIGHT = LCD::HEIGHT
-HALF_WIDTH  = FULL_WIDTH  / 2
-HALF_HEIGHT = FULL_HEIGHT / 2
+  TONE = {
+    :C4  =>  262,
+    :D4  =>  294,
+    :E4  =>  330,
+    :F4  =>  349,
+    :G4  =>  392,
+    :A4  =>  440,
+    :B4  =>  494,
+    :F5  =>  698,
+    :Gs5 =>  831,
+    :As5 =>  932,
+    :C6  => 1047,
+    :Cs6 => 1109,
+    :Ds6 => 1245,
+    :F6  => 1397,
+  }
+
+  BUZZER.init(0, 26)
+  BUZZER.mute
 
   loop do
-    # draw striped square
-
     greeter.greet
-    HALF_HEIGHT.times do |y|
-      x = y * HALF_WIDTH / HALF_HEIGHT
-      c = (y & 0xf) << 1
-      LCD.fill_rect(x, y, FULL_WIDTH, FULL_HEIGHT, LCD.rgb(c, 0, 0))
-    end
 
-    greeter.greet
-    HALF_HEIGHT.times do |y|
-      x = y * HALF_WIDTH / HALF_HEIGHT
-      c = (y & 0xf) << 1
-      LCD.fill_rect(HALF_WIDTH, y, HALF_WIDTH - x, FULL_HEIGHT, LCD.rgb(0, c, 0))
-    end
-
-    greeter.greet
-    HALF_HEIGHT.times do |y|
-      x = y * HALF_WIDTH / HALF_HEIGHT
-      c = (y & 0xf) << 1
-      LCD.fill_rect(0, HALF_HEIGHT, FULL_WIDTH - x, HALF_HEIGHT - y, LCD.rgb(c, c, 0))
-    end
-
-    greeter.greet
-    HALF_HEIGHT.times do |y|
-      x = y * HALF_WIDTH / HALF_HEIGHT
-      c = (y & 0xf) << 1
-      LCD.fill_rect(x, HALF_HEIGHT, HALF_WIDTH - x, HALF_HEIGHT - y, LCD.rgb(0, 0, c))
-    end
-
-
-    # draw triangle
-
-    rgb = LCD.rgb(0,0,0)
-
-    greeter.greet
-    x1 = HALF_WIDTH
-    y1 = 0
-    x2 = HALF_WIDTH
-    y2 = HALF_HEIGHT - 1
-    y3 = 0
-    (HALF_WIDTH - 1).times do |x|
-      LCD.fill_triangle(x1, y1, x2, y2, HALF_WIDTH + x, y3, rgb)
-    end
-    x1 = FULL_WIDTH - 1
-    y1 = 0
-    # x2 = HALF_WIDTH
-    # y2 = HALF_HEIGHT - 1
-    x3 = FULL_WIDTH - 1
-    HALF_HEIGHT.times do |y|
-      LCD.fill_triangle(x1, y1, x2, y2, x3, y, rgb)
-    end
-
-    greeter.greet
-    x1 = FULL_WIDTH - 1
-    y1 = HALF_HEIGHT
-    x2 = HALF_WIDTH
-    y2 = HALF_HEIGHT
-    x3 = FULL_WIDTH - 1
-    (HALF_HEIGHT - 1).times do |y|
-      LCD.fill_triangle(x1, y1, x2, y2, x3, HALF_HEIGHT + y, rgb)
-    end
-    x1 = FULL_WIDTH - 1
-    y1 = FULL_HEIGHT - 1
-    # x2 = HALF_WIDTH
-    # y2 = HALF_HEIGHT
-    y3 = FULL_HEIGHT - 1
-    HALF_WIDTH.times do |x|
-      LCD.fill_triangle(x1, y1, x2, y2, FULL_WIDTH - 1 - x, y3, rgb)
-    end
-
-    greeter.greet
-    x1 = HALF_WIDTH - 1
-    y1 = FULL_HEIGHT - 1
-    x2 = HALF_WIDTH - 1
-    y2 = HALF_HEIGHT
-    y3 = FULL_HEIGHT - 1
-    (HALF_WIDTH - 1).times do |x|
-      LCD.fill_triangle(x1, y1, x2, y2, HALF_WIDTH - 1 - x, y3, rgb)
-    end
-    x1 = 0
-    y1 = FULL_HEIGHT - 1
-    # x2 = HALF_WIDTH - 1
-    # y2 = HALF_HEIGHT
-    x3 = 0
-    HALF_HEIGHT.times do |y|
-      LCD.fill_triangle(x1, y1, x2, y2, x3, FULL_HEIGHT - 1 - y, rgb)
-    end
-
-    greeter.greet
-    x1 = 0
-    y1 = HALF_HEIGHT - 1
-    x2 = HALF_WIDTH - 1
-    y2 = HALF_HEIGHT - 1
-    x3 = 0
-    (HALF_HEIGHT - 1).times do |y|
-      LCD.fill_triangle(x1, y1, x2, y2, x3, HALF_HEIGHT - 1 - y, rgb)
-    end
-    x1 = 0
-    y1 = 0
-    # x2 = HALF_WIDTH - 1
-    # y2 = HALF_HEIGHT - 1
-    y3 = 0
-    HALF_WIDTH.times do |x|
-      LCD.fill_triangle(x1, y1, x2, y2, x, y3, rgb)
-    end
+    BUZZER.tone(TONE[:C4])
+    sleep 0.5
+    BUZZER.tone(TONE[:D4])
+    sleep 0.5
+    BUZZER.tone(TONE[:E4])
+    sleep 0.5
+    BUZZER.tone(TONE[:F4])
+    sleep 0.5
+    BUZZER.tone(TONE[:G4])
+    sleep 0.5
+    BUZZER.tone(TONE[:A4])
+    sleep 0.5
+    BUZZER.tone(TONE[:B4])
+    sleep 0.5
+    BUZZER.mute
+    sleep 1
 
   end

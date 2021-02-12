@@ -7,9 +7,8 @@
 
 #include "mrubyc.h"
 
-#include "mrbc_lcd.h"
+#include "mrbc_buzzer.h"
 
-#include "models/lcd.h"
 #include "models/greeter.h"
 #include "loops/master.h"
 
@@ -57,8 +56,7 @@ void app_main(void) {
 
   mrbc_define_method(0, mrbc_class_object, "debugprint", c_debugprint);
 
-  mrbc_mruby_lcd_m5stack_gem_init(0);
-  mrbc_create_task(lcd, 0);
+  mrbc_mruby_buzzer_gem_init(0);
 
   mrbc_create_task(greeter, 0);
   mrbc_create_task(master, 0);
