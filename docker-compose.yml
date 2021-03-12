@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  builder-prepare:
+    image: monstaruos/mrubyc-esp32-handson:2021Mar11
+    volumes:
+      - ./:/home/m5stack/app
+    user: m5stack
+    command: cp -a /home/m5stack/esp/esp-idf/tools/kconfig /home/m5stack/app
+
+  builder-nodevice:
+    image: monstaruos/mrubyc-esp32-handson:2021Mar11
+    volumes:
+      - ./kconfig:/home/m5stack/esp/esp-idf/tools/kconfig
+      - ./:/home/m5stack/app
+    user: m5stack
+    working_dir: /home/m5stack/app
+
+  builder:
+    image: monstaruos/mrubyc-esp32-handson:2021Mar11
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    volumes:
+      - ./kconfig:/home/m5stack/esp/esp-idf/tools/kconfig
+      - ./:/home/m5stack/app
+    user: m5stack
+    working_dir: /home/m5stack/app
