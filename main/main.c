@@ -6,6 +6,13 @@
 #include "nvs_flash.h"
 
 #include "mrubyc.h"
+#include "mrbc_esp32_i2c.h"
+#include "mrbc_esp32_wifi.h"
+#include "mrbc_esp32_http_client.h"
+
+#include "models/i2c.h"
+#include "models/sht30.h"
+#include "loops/master.h"
 
 // #include "models/[replace with your file].h"
 // #include "loops/[replace with your file].h"
@@ -54,6 +61,13 @@ void app_main(void) {
 
   mrbc_define_method(0, mrbc_class_object, "debugprint", c_debugprint);
 
+  mrbc_mruby_esp32_i2c_gem_init(0);
+  mrbc_mruby_esp32_wifi_gem_init(0);
+  mrbc_mruby_esp32_httpclient_gem_init(0);
+
   // mrbc_create_task( [replace with your task], 0 );
+  mrbc_create_task(i2c, 0);
+  mrbc_create_task(sht30, 0);
+  mrbc_create_task(master, 0);
   mrbc_run();
 }
