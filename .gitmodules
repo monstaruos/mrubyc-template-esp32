@@ -8,3 +8,7 @@
 [submodule "components/FastLED"]
 	path = components/FastLED
 	url = https://github.com/FastLED/FastLED.git
+[submodule "components/m5atom"]
+	path = components/m5atom
+	url = https://github.com/monstaruos/M5Atom.git
+	branch = fix/0.0.1/prepare_build
