@@ -2,3 +2,6 @@
 	path = components/mrubyc
 	url = https://github.com/monstaruos/mrubyc.git
 	branch = setup2.1_esp32
+[submodule "components/arduino"]
+	path = components/arduino
+	url = https://github.com/espressif/arduino-esp32.git
